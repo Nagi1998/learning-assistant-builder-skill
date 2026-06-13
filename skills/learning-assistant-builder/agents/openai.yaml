@@ -1,0 +1,7 @@
+interface:
+  display_name: "Learning Assistant Builder"
+  short_description: "Guided builder for student learning assistant apps"
+  default_prompt: "Use $learning-assistant-builder to create a student-friendly learning assistant project."
+
+policy:
+  allow_implicit_invocation: true
