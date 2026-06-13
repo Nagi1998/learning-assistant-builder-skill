@@ -97,6 +97,7 @@ For reuse outside Codex, use `references/portable-agent-prompt.md` as the self-c
 - 核心功能
 - 页面结构
 - 设计风格
+- 响应式设计策略
 - 交互流程
 - 应用使用逻辑
 - MVP 实现范围
@@ -116,10 +117,10 @@ For reuse outside Codex, use `references/portable-agent-prompt.md` as the self-c
 
 - Vite
 - TypeScript
-- 原生 CSS
+- Tailwind CSS
 - 原生 Hash 路由或轻量视图切换
 
-不默认引入 React/Tailwind/shadcn，不引入第三方路由库，不引入状态管理库，不引入后端、数据库或登录系统。
+默认引入 Tailwind CSS 来提升 UI 质量和响应式效率。不默认引入 React/shadcn，不引入第三方路由库，不引入状态管理库，不引入后端、数据库或登录系统。
 
 如果用户明确要求 React/Vue 等框架，或当前已有项目已经使用这些框架，可以沿用现有技术栈；否则必须优先使用上述轻量技术栈。
 
@@ -133,11 +134,13 @@ For reuse outside Codex, use `references/portable-agent-prompt.md` as the self-c
 - 只实现一个完整学习闭环：进入应用、输入学习问题、获得讲解或练习、看到反馈或记录、知道下一步。
 - 使用本地模拟数据和本地模拟学习助手逻辑；除非用户已经明确提供真实 API 信息，否则不要接入真实 AI API。
 - 不做登录注册、数据库、后端服务、复杂权限、复杂文件上传、教师端、长期学习档案、复杂数据统计等耗时功能；这些内容放入迭代部分。
-- 优先使用 Vite 原生 TypeScript 项目和已有依赖，不引入大型 UI 框架或复杂状态管理，除非项目已存在并正在使用。
+- 优先使用 Vite 原生 TypeScript + Tailwind CSS 项目和已有依赖，不引入大型 UI 框架或复杂状态管理，除非项目已存在并正在使用。
+- 必须做响应式设计，至少覆盖手机竖屏、平板/窄屏和桌面宽屏；核心学习流程在移动端和桌面端都必须可用。
 - 页面数量按照设计文档确定，不得影响主要功能实现。
 - 每个页面必须服务设计文档中的核心功能或完整使用逻辑；不要为了“看起来完整”创建空页面或弱功能页面。
 - 如果 1 页能完整承载核心学习闭环，就做 1 页；如果核心功能天然分离，就用多个轻量页面或视图；如果设计文档需要更多页面，优先保证主要功能，但每页必须轻量、可用、无复杂依赖。
 - 视觉设计要集中在首屏、学习流程区、反馈区和记录区，让课堂展示效果立刻可见。
+- 使用 Tailwind CSS 时，优先使用语义清晰的布局类、响应式断点和状态类；不要为了视觉效果堆砌复杂动画、插件或自定义配置。
 - 如果 15 分钟内无法完成用户提出的全部功能，必须优先保留 MVP，明确把剩余内容放入后续迭代。
 
 ## 必须调用的设计 Skill
@@ -152,7 +155,7 @@ For reuse outside Codex, use `references/portable-agent-prompt.md` as the self-c
 - 用 `design-taste-frontend` 避免模板化、粗糙、营销页式界面，让应用第一屏直接是可用的学习助手体验。
 - 用 `ui-ux-pro-max` 优化布局、颜色、字体、控件层级、响应式、交互状态和可访问性。
 
-设计 skill 只用于提升界面和交互质量，不得因此引入重型 UI 框架或复杂工程依赖。
+设计 skill 只用于提升界面和交互质量，不得因此引入重型 UI 框架或复杂工程依赖；Tailwind CSS 是允许的默认样式方案。
 
 如果当前 Agent 环境无法调用其中任意一个 skill，不要直接忽略；必须先告知用户缺少对应 skill，并请求用户安装或启用。用户明确要求继续时，才可以按该 skill 的设计原则手动执行。
 
@@ -167,6 +170,7 @@ For reuse outside Codex, use `references/portable-agent-prompt.md` as the self-c
 - 检查启动脚本没有写死打开 `http://localhost:3000`。
 - 检查没有使用 `--strictPort`。
 - 执行最快可用构建命令，通常是 `npm run build`。
+- 检查关键页面或视图使用了响应式布局，至少包含移动端和桌面端适配策略。
 
 验证策略：
 
