@@ -18,12 +18,38 @@ https://github.com/your-name/learning-assistant-builder-skill/tree/main/skills/l
 
 ## 在 Codex 中安装
 
-在 Codex 中可以让 Agent 使用 skill-installer 安装上面的 GitHub 链接。
+### 推荐：使用通用 Skills CLI
 
-也可以在终端执行：
+安装到 Codex：
 
 ```bash
-python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --url https://github.com/<你的GitHub用户名>/learning-assistant-builder-skill/tree/main/skills/learning-assistant-builder
+npx -y skills add Nagi1998/learning-assistant-builder-skill --skill learning-assistant-builder --agent codex
+```
+
+安装到 Claude Code：
+
+```bash
+npx -y skills add Nagi1998/learning-assistant-builder-skill --skill learning-assistant-builder --agent claude-code
+```
+
+安装到当前工具自动检测到的 Agent：
+
+```bash
+npx -y skills add Nagi1998/learning-assistant-builder-skill --skill learning-assistant-builder
+```
+
+也可以使用完整 GitHub URL：
+
+```bash
+npx -y skills add https://github.com/Nagi1998/learning-assistant-builder-skill --skill learning-assistant-builder --agent codex
+```
+
+### Codex 内置安装器
+
+也可以使用 Codex 自带的 skill-installer：
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --url https://github.com/Nagi1998/learning-assistant-builder-skill/tree/main/skills/learning-assistant-builder
 ```
 
 安装后重启 Codex，让新 skill 生效。
