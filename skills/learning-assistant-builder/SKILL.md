@@ -14,7 +14,7 @@ For reuse outside Codex, use `references/portable-agent-prompt.md` as the self-c
 Follow this workflow exactly:
 
 1. Start a guided Q&A when the user says "我想创造一个学习助手" or asks to create a learning assistant.
-2. Ask concise questions in batches. Keep each batch to the fewest questions needed to define the product.
+2. Ask conversational, open-ended questions in small batches. Keep each batch to the fewest questions needed to define the product.
 3. If the user replies "停止" at any point during Q&A, stop asking questions and fill all remaining choices with mainstream, beginner-friendly education product defaults.
 4. After Q&A is complete, ask for confirmation before generating the design document.
 5. Generate a design document only after the user confirms.
@@ -24,6 +24,35 @@ Follow this workflow exactly:
 9. Put the required startup instructions at the very end of the final response.
 
 Do not skip the two confirmation gates unless the user explicitly says to proceed through both design and implementation without stopping.
+
+## Conversational Q&A Protocol
+
+The Q&A phase must feel like a real conversation, not a form.
+
+- Ask open-ended questions and wait for the user's answer before moving on.
+- Do not present multiple-choice option cards, radio-button style choices, or "A/B/C" answer menus unless the user explicitly asks for options.
+- Do not use a tool or UI flow that forces the user to select from predefined options.
+- Avoid long questionnaires. Ask at most 3 questions in one turn, and prefer 1-2 when the user's intent is still broad.
+- You may give short examples inside a question, but always make clear that the user can answer freely.
+- After each answer, summarize what you learned in one short sentence, then ask the next natural follow-up.
+- When enough information has been collected, say that the requirements are clear and ask whether to generate the design document.
+
+Good first response:
+
+```text
+可以，我们先把这个学习助手的方向聊清楚。
+
+它主要想帮助哪一类学生？比如小学、初中、高中，或者某个具体课程阶段。你可以直接描述，不用按选项回答。
+```
+
+Avoid:
+
+```text
+请选择：
+A. 小学生
+B. 初中生
+C. 高中生
+```
 
 ## Q&A Guide
 
